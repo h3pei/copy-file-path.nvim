@@ -2,7 +2,7 @@
 
 A Neovim plugin to copy file path to the clipboard.
 
-![copy-file-path-nvim-demo](https://github.com/mogulla3/copy-file-path.nvim/assets/1377455/48f97509-bf81-45c9-bb6d-61bda6b609ec)
+![copy-file-path-nvim-demo](https://github.com/h3pei/copy-file-path.nvim/assets/1377455/48f97509-bf81-45c9-bb6d-61bda6b609ec)
 
 ## Usage
 
