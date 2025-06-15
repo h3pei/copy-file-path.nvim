@@ -15,3 +15,13 @@ Simply install copy-file-path.nvim with your favourite plugin manager (e.g. vim-
 |`:CopyRelativeFilePathFromHome`|Copy relative file path from `$HOME` to the clipboard.|
 |`:CopyFileName`|Copy just the file name to the clipboard.|
 |`:CopyFilePath`|Alias for `CopyRelativeFilePath`|
+|`:CopyAllRelativeFilePaths [separator]`|Copy all relative file paths to the clipboard. Default separator is space.|
+|`:CopyAllAbsoluteFilePaths [separator]`|Copy all absolute file paths to the clipboard. Default separator is space.|
+|`:CopyAllRelativeFilePathsFromHome [separator]`|Copy all relative file paths from `$HOME` to the clipboard. Default separator is space.|
+|`:CopyAllFileNames [separator]`|Copy all file names to the clipboard. Default separator is space.|
+
+For the `CopyAll*` commands, you can specify a separator:
+- `,` for comma separation
+- `"\n"` for newline separation
+- `"\t"` for tab separation
+- Any other string as a custom separator
