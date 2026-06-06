@@ -25,3 +25,7 @@ For the `CopyAll*` commands, you can specify a separator:
 - `"\n"` for newline separation
 - `"\t"` for tab separation
 - Any other string as a custom separator
+
+## License
+
+[MIT License](LICENSE)
