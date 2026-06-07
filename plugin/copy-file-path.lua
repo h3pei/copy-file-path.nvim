@@ -26,6 +26,22 @@ local function parse_separator(separator)
 end
 
 ---@param mods string filename-modifiers
+---@param opts table command options
+local function copy_current_buffer_path(mods, opts)
+  local path = format_path(mods)
+
+  if opts.range > 0 then
+    if opts.line1 == opts.line2 then
+      path = path .. ":" .. opts.line1
+    else
+      path = path .. ":" .. opts.line1 .. "-" .. opts.line2
+    end
+  end
+
+  copy_to_clipboard(path)
+end
+
+---@param mods string filename-modifiers
 ---@return string[]
 local function get_all_buffer_paths(mods)
   local paths = {}
@@ -55,21 +71,21 @@ local function copy_all_buffer_paths(mods, opts)
   copy_to_clipboard(result)
 end
 
-vim.api.nvim_create_user_command("CopyRelativeFilePath", function()
-  copy_to_clipboard(format_path(":."))
-end, { nargs = 0, force = true, desc = "Copy relative file path to the clipboard" })
+vim.api.nvim_create_user_command("CopyRelativeFilePath", function(opts)
+  copy_current_buffer_path(":.", opts)
+end, { nargs = 0, range = true, force = true, desc = "Copy relative file path to the clipboard" })
 
-vim.api.nvim_create_user_command("CopyAbsoluteFilePath", function()
-  copy_to_clipboard(format_path(":p"))
-end, { nargs = 0, force = true, desc = "Copy absolute file path to the clipboard" })
+vim.api.nvim_create_user_command("CopyAbsoluteFilePath", function(opts)
+  copy_current_buffer_path(":p", opts)
+end, { nargs = 0, range = true, force = true, desc = "Copy absolute file path to the clipboard" })
 
-vim.api.nvim_create_user_command("CopyRelativeFilePathFromHome", function()
-  copy_to_clipboard(format_path(":~"))
-end, { nargs = 0, force = true, desc = "Copy relative file path from $HOME to the clipboard" })
+vim.api.nvim_create_user_command("CopyRelativeFilePathFromHome", function(opts)
+  copy_current_buffer_path(":~", opts)
+end, { nargs = 0, range = true, force = true, desc = "Copy relative file path from $HOME to the clipboard" })
 
-vim.api.nvim_create_user_command("CopyFileName", function()
-  copy_to_clipboard(format_path(":t"))
-end, { nargs = 0, force = true, desc = "Copy just the file name to the clipboard" })
+vim.api.nvim_create_user_command("CopyFileName", function(opts)
+  copy_current_buffer_path(":t", opts)
+end, { nargs = 0, range = true, force = true, desc = "Copy just the file name to the clipboard" })
 
 vim.api.nvim_create_user_command("CopyAllRelativeFilePaths", function(opts)
   copy_all_buffer_paths(":.", opts)
@@ -87,4 +103,6 @@ vim.api.nvim_create_user_command("CopyAllFileNames", function(opts)
   copy_all_buffer_paths(":t", opts)
 end, { nargs = "?", force = true, desc = "Copy all file names to the clipboard" })
 
-vim.cmd("command! CopyFilePath CopyRelativeFilePath")
+vim.api.nvim_create_user_command("CopyFilePath", function(opts)
+  copy_current_buffer_path(":.", opts)
+end, { nargs = 0, range = true, force = true, desc = "Alias for CopyRelativeFilePath" })

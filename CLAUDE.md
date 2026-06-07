@@ -13,6 +13,7 @@ copy-file-path.nvimは、Neovimでファイルパスをクリップボードに�
 **コア関数:**
 - `format_path(mods, buf_path)`: filename-modifiersを使用したパスフォーマット。第2引数省略時は現在のバッファ
 - `copy_to_clipboard(path)`: クリップボードへのコピーとユーザーフィードバック
+- `copy_current_buffer_path(mods, opts)`: 現在バッファのパスコピー。range指定時は行番号(`:42`, `:10-20`)を付与
 - `get_all_buffer_paths(mods)`: 全バッファのパスを指定形式で取得
 - `copy_all_buffer_paths(mods, opts)`: 全バッファパスの区切り文字処理とコピー
 - `parse_separator(separator)`: エスケープ文字（"\n", "\t"）の変換

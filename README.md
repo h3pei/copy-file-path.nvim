@@ -20,6 +20,11 @@ Simply install copy-file-path.nvim with your favourite plugin manager (e.g. vim-
 |`:CopyAllRelativeFilePathsFromHome [separator]`|Copy all relative file paths from `$HOME` to the clipboard. Default separator is space.|
 |`:CopyAllFileNames [separator]`|Copy all file names to the clipboard. Default separator is space.|
 
+The single-file commands (`CopyRelativeFilePath`, `CopyAbsoluteFilePath`, `CopyRelativeFilePathFromHome`, `CopyFileName` and `CopyFilePath`) accept a range, which appends line numbers to the copied path:
+
+- Select lines in visual mode and run `:'<,'>CopyRelativeFilePath` → `path/to/file.lua:10-20`
+- Run with a line number like `:42CopyRelativeFilePath` → `path/to/file.lua:42`
+
 For the `CopyAll*` commands, you can specify a separator:
 - `,` for comma separation
 - `"\n"` for newline separation
