@@ -10,7 +10,7 @@ end
 ---@param path string
 local function copy_to_clipboard(path)
   vim.fn.setreg("+", path)
-  vim.api.nvim_echo({ { "Copied: " .. path } }, false, {})
+  vim.notify("Copied: " .. path, vim.log.levels.INFO)
 end
 
 ---@param separator string
@@ -47,7 +47,7 @@ local function copy_all_buffer_paths(mods, opts)
   local paths = get_all_buffer_paths(mods)
 
   if #paths == 0 then
-    vim.api.nvim_echo({ { "No buffers with file paths found" } }, false, {})
+    vim.notify("No buffers with file paths found", vim.log.levels.WARN)
     return
   end
 
